@@ -1,0 +1,271 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'merriweather';
+  justify-content: center;
+}
+
+img,embed,object,video {
+  max-width:100%;
+}
+
+/* the container that holds both the deck and the scoreboard */
+.container {
+  background-color: #E0FFFF;
+  width: calculate (100%-6%);
+  margin: 3%;
+  max-width: 700px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+ul {
+ list-style: none;
+}
+
+/* ---------scoreboard to show the player star rating, win count (# of matches),
+move count, and timer once the game starts */
+.scoreboard  {
+  box-sizing: border-box;
+  box-shadow: 2px 2px #F0F8FF;
+  border-width: thin;
+  border-style: groove;
+  width: calculate (95% - 5%);
+  height: 20%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
+}
+
+.stars li {
+  display: inline-block;
+  font-size: 15px;
+  margin: none;
+  padding: none;
+}
+
+.socreboard > .stars {
+  width:50%;
+  height: 10%;
+  order: -1;
+  margin-top: 0;
+}
+
+.scoreboard > #start-over {
+  width: 50%;
+  order: 0;
+    height: 20%;
+    padding: 1px;
+  margin-left: 20px;
+}
+
+.scoreboard > #move-count {
+  width: 45%;
+  order: 1;
+    height: 25%;
+  margin-left: 2%;
+}
+
+.scoreboard > #wins {
+  width: 45%;
+    height: 25%;
+  order:2;
+}
+
+.scoreboard > .timer {
+  width: calculate (100% - 7% / 2);
+    height: 30%;
+  order:3;
+}
+
+/* to change the star rating based on performance */
+.good {
+  color: black;
+}
+
+.bad {
+  color: white;
+}
+
+/* ---------card deck  */
+.deck {
+  background-image: radial-gradient(#00008B, #1E90FF);
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  height: 70%;
+  justify-content: space-between;
+  padding: 0.35em;
+}
+
+.cards {
+  font-size: 2em;
+  width: 20%;
+  margin-left: 1%;
+  margin-right: 1%;
+  border-radius: 5px;;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 2.5;
+  background: #008B8B;
+  color: #008B8B;
+  height: 20%;
+}
+
+/* showing the cards when clicked */
+.show, .open  {
+  color: black;
+  background: yellow;
+}
+
+/* locking the cards when matched */
+.match {
+  color: white;
+  background: blue;
+}
+
+/* animation for unmatched cards and hiding them after */
+.unmatched {
+  -webkit-animation: nudge;
+  animation-name: nudge;
+  animation-duration: 0.7s;
+  position: relative;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  }
+
+@-webkit-keyframes nudge {
+  0%, 100% {
+    -webkit-transform: translate(0,0);
+    color: #008B8B;
+    background-color: #008B8B;
+  }
+  50% {
+    -webkit-transform: rotate(15deg);
+    background-color: red;
+    color: white;
+  }
+}
+
+@keyframes nudge {
+  0%, 100% {
+    transform: translate(0,0);
+    color: #008B8B;
+    background-color: #008B8B;
+  }
+  50% {
+    transform: rotate(10deg);
+    background-color: red;
+    color: white;
+  }
+}
+
+/* animation to show cards reshuffling/resetting */
+.restart {
+  -webkit-animation: reboot;
+  animation-name: reboot;
+  animation-duration: 0.8s;
+  position: relative;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+@-webkit-keyframes reboot {
+  0%,100% {
+    -webkit-transform: translate(0,0);
+  }
+  30% {
+    -webkit-transform: translate(20px,0);
+  }
+  50% {
+    -webkit-transform: translate(25px,0);
+    color: black;
+    background-color: black;
+  }
+}
+
+@keyframes reboot {
+  0%,100% {
+    transform: translate(0,0);
+  }
+  30% {
+    transform: translate(20px,0);
+  }
+  50% {
+  transform: translate(25px,0);
+  color:  black;
+  background-color: black;
+  }
+}
+
+/* ending message once the game is over */
+.ending {
+  display: flex;
+  box-sizing: border-box;
+  position: absolute;
+  top: 150px;
+  border: 2px ridge #FF4500;
+  color: #F0E68C;
+  background-color: #FF6347;
+  box-shadow: 1px 1px 5px 2px #FF4500;
+  width: 220px;
+  height: 200px;
+  font-size:12px;
+  flex-direction:column;
+}
+
+@media screen and (max-width: 450px) {
+  .ending {
+    left: 100px;
+  }
+}
+
+@media screen and (min-width: 451px) {
+  .ending {
+    left: 200px;
+  }
+}
+
+@media screen and (min-width: 681px) {
+  .ending {
+    left: 230px;
+  }
+}
+
+.ending > h3 {
+  text-align: center;
+  text-shadow: 0.3px 0.3px;
+}
+
+.scores {
+  display: flex;
+  flex-direction:column;
+  justify-content: flex-start;
+}
+
+#new-game {
+  width: 90px;
+  height: 100%;
+  background-color: #D2691E;
+  border: 2px groove #A0522D;
+  box-shadow: 1px 1px 5px 1px #A0522D;
+  position: relative;
+  left: 22%;
+  top: 7%;
+  font-weight: bold;
+}
